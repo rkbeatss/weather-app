@@ -13,10 +13,12 @@ This is a simple ReactJS project that invokes the OpenWeatherMap API in order to
 
 Make sure to clone the project and install all npm packages 
 
-``` npm install 
+``` 
+npm install 
 ```
 
 To start the app: 
 
-``` npm start
+``` 
+npm start
 ```
