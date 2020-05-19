@@ -14,13 +14,13 @@ class DayContainer extends Component {
        degree: propTypes.string
    }
     render(){
-        const { props } = this;
+        const { weather, degree } = this.props;
         return (
             <div className = "day-container">
-                {props.weather.map((weatherItem, index) => {
+                {weather.map((weatherItem, index) => {
                     return (
                         <div className = "day-box" key = {index}>
-                            <Day date = {weatherItem.dt} icon={weatherItem.weather[0].id} min = {weatherItem.temp.min} max = {weatherItem.temp.max} desc = {weatherItem.weather[0].description} degree = {props.degree} />
+                            <Day date = {weatherItem.dt} icon={weatherItem.weather[0].id} min = {weatherItem.temp.min} max = {weatherItem.temp.max} desc = {weatherItem.weather[0].description} degree = {degree} />
                         </div>
                     );
                 })}
