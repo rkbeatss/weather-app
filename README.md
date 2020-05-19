@@ -8,6 +8,7 @@ This is a simple ReactJS project that invokes the OpenWeatherMap API in order to
 1. Understand and create React Components
 2. Understand the communication between parent and child components through props 
 3. Make use of HTTP calls and implement an API service 
+4. Understand states
 
 ## Run project
 
@@ -22,3 +23,5 @@ To start the app:
 ``` 
 npm start
 ```
+
+![A screenshot of the app UI](public/app-UI.png)
