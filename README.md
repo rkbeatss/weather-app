@@ -8,7 +8,16 @@ This is a simple ReactJS project that invokes the OpenWeatherMap API in order to
 1. Understand and create React Components
 2. Understand the communication between parent and child components through props 
 3. Make use of HTTP calls and implement an API service 
-4. Understand states
+4. Understand and use state object
+
+## OpenWeatherMap API 
+
+In order to use this service, you must obtain an API key from [their website](https://openweathermap.org/price) and include it in a config file. 
+
+
+## Geocoding API 
+
+In order to use this service, you must obtain an API key from [their website](https://developers.google.com/maps/documentation/geocoding/start) and include it in a config file. 
 
 ## Run project
 

@@ -31,11 +31,11 @@ class WeeklyComponent extends Component {
     }
     keyPress = (event) => {
         if (event.key === 'Enter'){
-            this.setState({city: event.target.value}, () => this.fetchWeather())
+            this.setState({city: event.target.value}, () => {this.fetchWeather()});
         }
     }
-    changeDegree = event => {
-        this.setState({toggle:!this.state.toggle, degree:event.target.value}, () => {this.fetchWeather()})
+    changeDegree = (event) => {
+        this.setState({toggle:!this.state.toggle, degree:event.target.value}, () => {this.fetchWeather()});
     }
 
     /**
@@ -52,7 +52,7 @@ class WeeklyComponent extends Component {
                         isLoading:false
                     })
                 })
-                .catch(err => this.setState({error: err.message, isLoading: false}))
+                .catch(err => this.setState({error: err.message, isLoading: false}));
         }
     }
 
