@@ -1,10 +1,16 @@
 import apiConfig from './keys';
 import Geocode from 'react-geocode';
 
-const URL = 'https://api.openweathermap.org/data/2.5/onecall?';
+const OpenWeather_URL = 'https://api.openweathermap.org/data/2.5/onecall?';
+const NASA_URL = `https://api.nasa.gov/planetary/apod?api_key=${apiConfig.nasa_key}`;
 Geocode.setApiKey(apiConfig.geocode_key);
 
 const API = {
+
+    getBackgroundFromNasa: async () => {
+        const res = await fetch(NASA_URL);
+        return await res.json();
+    },
 
     getCoordinates: async (name) => {
         const res = await Geocode.fromAddress(name);
@@ -12,9 +18,7 @@ const API = {
         return [lat, lng];
     }, 
 
-    buildUrl: (coord, unit) => {
-        return URL + `lat=${coord[0]}&lon=${coord[1]}&units=${unit}&exclude=hourly,minutely&appid=${apiConfig.weather_key}`;
-    },
+    buildUrl: (coord, unit) => OpenWeather_URL + `lat=${coord[0]}&lon=${coord[1]}&units=${unit}&exclude=hourly,minutely&appid=${apiConfig.weather_key}`,
     
     getWeather: async (searchName, unit) => {
         let coord = await API.getCoordinates(searchName);

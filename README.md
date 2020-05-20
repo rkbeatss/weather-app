@@ -2,7 +2,7 @@
 
 ## Description 
 
-This is a simple ReactJS project that invokes the OpenWeatherMap API in order to get a 7-day forecast. It also leverages Google's Geocode module to transform a location into coordinates. 
+This is a simple ReactJS project that invokes the OpenWeatherMap API in order to get a 7-day forecast. It also leverages Google's Geocode module to transform a location into coordinates. The background image is set through the Nasa Photo of the Day API. 
 
 ## The main goals of this project are:
 1. Understand and create React Components
@@ -18,6 +18,11 @@ In order to use this service, you must obtain an API key from [their website](ht
 ## Geocoding API 
 
 In order to use this service, you must obtain an API key from [their website](https://developers.google.com/maps/documentation/geocoding/start) and include it in a config file. 
+
+## Nasa Photo of the day API 
+
+In order to use this service, you must obtain an API key from [their website](https://api.nasa.gov/index.html#apply-for-an-api-key) and include it in a config file. 
+
 
 ## Run project
 

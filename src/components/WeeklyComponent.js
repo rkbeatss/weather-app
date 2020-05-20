@@ -13,6 +13,7 @@ class WeeklyComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
+            photo: '',
             dailyWeather: [],
             city: '',
             degree: 'metric',
@@ -22,6 +23,9 @@ class WeeklyComponent extends Component {
             error: ''
         }
         this.changeDegree = this.changeDegree.bind(this);
+    }
+    componentDidMount(){
+        this.setBackground();
     }
     handleChange = (event) => {
         this.setState({input:event.target.value});
@@ -36,20 +40,33 @@ class WeeklyComponent extends Component {
     }
 
     /**
+     * Fetch the picture of the day from NASA and set it as background img
+     */
+
+    setBackground(){
+        API.getBackgroundFromNasa()
+        .then((data) => {
+            this.setState({
+                photo: data
+            })
+        })
+        .catch(err => console.log(err)); // just log error for now
+    }
+
+    /**
      * Fetch the 7- day weather information for given city and degree
      */
 
     fetchWeather(){
-        if(this.state.city) {
+        if(this.state.city){
             this.setState({ isLoading: true});
-            API.getWeather(this.state.city, this.state.degree)
-                .then((data) => {
-                    this.setState({
-                        dailyWeather: data.daily,
-                        isLoading:false
-                    })
+            API.getWeather(this.state.city, this.state.degree).then((data) => {
+                this.setState({
+                    dailyWeather: data.daily,
+                    isLoading: false
                 })
-                .catch(err => this.setState({error: err.message, isLoading: false}));
+            })
+            .catch(err => this.setState({error: err.message, isLoading: false}));
         }
     }
 
@@ -60,17 +77,25 @@ class WeeklyComponent extends Component {
         if(this.state.error){
             return <div className = 'center'><p> Oops! {this.state.error} </p> </div>
         }
+        const styles = {
+            root: {
+                backgroundImage: `url(${this.state.photo.url})`,
+                width:'100%',
+                height: '800px',
+                backgroundSize: 'cover'
+            }
+        }
         return (
-            <div>
+            <div style = {styles.root}>
                 <Search press = {this.keyPress} searchEvent = {event => this.handleChange(event)} />
                 {this.state.city ? (
                     <div>
-                        <h3>{this.state.city} </h3>
-                        <DayContainer weather={this.state.dailyWeather} degree = {this.state.degree}/>
+                        <h3>{this.state.city}</h3>
+                        <DayContainer weather = {this.state.dailyWeather} degree = {this.state.degree} />
                         <Toggle toggle = {this.state.toggle} changeDegree = {this.changeDegree} weather = {this.state.dailyWeather} /> </div>):
-                        (<div className = "center"> <p>Don't be shy, enter any address to get the 7-day forecast! </p> </div>)}
-                    </div>
-                )
+                        (<div className = "center"> <h3> Don't be shy, enter any address to get the 7-day forecast!</h3> </div>)}
+            </div>
+        )
     }
 }
 export default WeeklyComponent;
