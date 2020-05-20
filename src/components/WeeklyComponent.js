@@ -23,9 +23,6 @@ class WeeklyComponent extends Component {
         }
         this.changeDegree = this.changeDegree.bind(this);
     }
-    componentDidMount = () => {
-        this.fetchWeather();
-    }
     handleChange = (event) => {
         this.setState({input:event.target.value});
     }
