@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import DayContainer from './DayContainer';
 import Toggle from './Toggle';
-import API from '../api-service/API';
+import ApiService from '../api-service/ApiService';
 
 /**
  * Weekly Component to display the full 7-day weather data
@@ -44,7 +44,7 @@ class WeeklyComponent extends Component {
      */
 
     setBackground(){
-        API.getBackgroundFromNasa()
+        ApiService.getBackgroundFromNasa()
         .then((data) => {
             this.setState({
                 photo: data
@@ -60,7 +60,7 @@ class WeeklyComponent extends Component {
     fetchWeather(){
         if(this.state.city){
             this.setState({ isLoading: true});
-            API.getWeather(this.state.city, this.state.degree).then((data) => {
+            ApiService.getWeather(this.state.city, this.state.degree).then((data) => {
                 this.setState({
                     dailyWeather: data.daily,
                     isLoading: false
