@@ -43,8 +43,14 @@ class Day extends Component {
                 </div>
                 <i className={imgURL}></i>
                 <ul className = "list-inline list">
-                    {degree === 'metric' ? <li>{Math.round(min)}°C</li>: <li>{Math.round(min)}°F</li>}
-                    {degree === 'metric' ? <li>{Math.round(max)}°C</li>: <li>{Math.round(max)}°F</li>}
+                    <li>
+                        {Math.round(min)}
+                        {degree == 'metric' ? '°C' : '°F'}
+                    </li> 
+                    <li>
+                        {Math.round(max)}
+                        {degree == 'metric' ? '°C': '°F'}
+                    </li>
                 </ul>
                 <p>
                     {desc}
