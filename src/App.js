@@ -5,9 +5,7 @@ import WeeklyComponent from './components/WeeklyComponent';
 class App extends Component {
   render(){
     return (
-      <div>
         <WeeklyComponent />
-      </div>
     );
   }
 }

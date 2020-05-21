@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin:0
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -21,6 +22,7 @@ h3 {
 }
 div > p {
   color:#707091;
+  padding-top: 10px;
 }
 input {
   width: 50%;

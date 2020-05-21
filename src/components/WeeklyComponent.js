@@ -15,7 +15,7 @@ class WeeklyComponent extends Component {
         this.state = {
             photo: '',
             dailyWeather: [],
-            city: '',
+            location: '',
             degree: 'metric',
             toggle: false,
             input: '',
@@ -32,7 +32,7 @@ class WeeklyComponent extends Component {
     }
     keyPress = (event) => {
         if (event.key === 'Enter'){
-            this.setState({city: event.target.value}, () => {this.fetchWeather()});
+            this.setState({location: event.target.value}, () => {this.fetchWeather()});
         }
     }
     changeDegree = (event) => {
@@ -54,13 +54,13 @@ class WeeklyComponent extends Component {
     }
 
     /**
-     * Fetch the 7- day weather information for given city and degree
+     * Fetch the 7- day weather information for given location and degree
      */
 
     fetchWeather(){
-        if(this.state.city){
+        if(this.state.location){
             this.setState({ isLoading: true});
-            ApiService.getWeather(this.state.city, this.state.degree).then((data) => {
+            ApiService.getWeather(this.state.location, this.state.degree).then((data) => {
                 this.setState({
                     dailyWeather: data.daily,
                     isLoading: false
@@ -81,16 +81,16 @@ class WeeklyComponent extends Component {
             root: {
                 backgroundImage: `url(${this.state.photo.url})`,
                 width:'100%',
-                height: '800px',
+                height: '850px',
                 backgroundSize: 'cover'
             }
         }
         return (
             <div style = {styles.root}>
                 <Search press = {this.keyPress} searchEvent = {event => this.handleChange(event)} />
-                {this.state.city ? (
+                {this.state.location ? (
                     <div>
-                        <h3>{this.state.city}</h3>
+                        <h3>{this.state.location}</h3>
                         <DayContainer weather = {this.state.dailyWeather} degree = {this.state.degree} />
                         <Toggle toggle = {this.state.toggle} changeDegree = {this.changeDegree} weather = {this.state.dailyWeather} /> </div>):
                         (<div className = "center"> <h3> Don't be shy, enter any address to get the 7-day forecast!</h3> </div>)}

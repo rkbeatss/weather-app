@@ -8,14 +8,7 @@ import propTypes from 'prop-types'
  */
 
 class Day extends Component {
-    static propTypes = {
-        date: propTypes.number,
-        icon: propTypes.number,
-        min: propTypes.number,
-        max: propTypes.number,
-        desc: propTypes.string, 
-        degree: propTypes.string
-    }
+    
     
     /**
      * Convert unix timestamp to date string in the format: Day, Month Date, Year
@@ -44,12 +37,10 @@ class Day extends Component {
                 <i className={imgURL}></i>
                 <ul className = "list-inline list">
                     <li>
-                        {Math.round(min)}
-                        {degree == 'metric' ? '°C' : '°F'}
+                        {Math.round(min)}{degree === 'metric' ? '°C' : '°F'}
                     </li> 
                     <li>
-                        {Math.round(max)}
-                        {degree == 'metric' ? '°C': '°F'}
+                        {Math.round(max)}{degree === 'metric' ? '°C': '°F'}
                     </li>
                 </ul>
                 <p>
@@ -59,4 +50,14 @@ class Day extends Component {
         );
     }
 }
+
+Day.propTypes = {
+    date: propTypes.number,
+    icon: propTypes.number,
+    min: propTypes.number, 
+    max: propTypes.number, 
+    desc: propTypes.string, 
+    degree:propTypes.string
+};
+
 export default Day; 

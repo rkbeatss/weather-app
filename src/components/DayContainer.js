@@ -9,10 +9,6 @@ import propTypes from 'prop-types'
  */
 
 class DayContainer extends Component {
-   static propTypes = {
-       weather: propTypes.array,
-       degree: propTypes.string
-   }
     render(){
         const { weather, degree } = this.props;
         return (
@@ -27,5 +23,9 @@ class DayContainer extends Component {
             </div>
         );
     }
+}
+DayContainer.propTypes = {
+    weather: propTypes.array,
+    degree: propTypes.string
 }
 export default DayContainer; 
