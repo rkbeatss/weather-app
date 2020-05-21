@@ -9,11 +9,15 @@ const API = {
 
     getBackgroundFromNasa: async () => {
         const res = await fetch(NASA_URL);
-        return await res.json();
+        if(res.ok){
+            return await res.json();
+        } else {
+            throw new Error(res.statusText);
+        }
     },
 
     getCoordinates: async (name) => {
-        const res = await Geocode.fromAddress(name);
+        const res = await Geocode.fromAddress(name); 
         const {lat, lng} = await res.results[0].geometry.location;
         return [lat, lng];
     }, 
@@ -24,11 +28,10 @@ const API = {
         let coord = await API.getCoordinates(searchName);
         let url =  API.buildUrl(coord, unit)
         const res = await fetch(url);
-        if (res.status !== 200){
-            throw new Error(res.statusText);
-        }
-        else {
-            return await res.json()
+        if (res.ok){
+            return await res.json();
+        } else {
+            throw new Error (res.statusText);
         }
     }
     // create even more functions as the app expands
