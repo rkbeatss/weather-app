@@ -85,7 +85,7 @@ fetchWeather(){
       <Search press = {this.keyPress} searchEvent = {event => this.handleChange(event)} />
       {this.state.location ? (
         <div> 
-          <h3> {this.state.location} </h3>
+          <h3> {this.state.location.toUpperCase()} </h3>
           <DayContainer weather = {this.state.dailyWeather} degree = {this.state.degree} />
           <Toggle toggle = {this.state.toggle} changeDegree = {this.changeDegree} weather = {this.state.dailyWeather} /> </div>):
           (<div className = "center"> <h3> Don't be shy, enter any address to get the 7-day forecast!</h3> </div>)}
